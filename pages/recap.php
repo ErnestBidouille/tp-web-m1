@@ -65,7 +65,7 @@
 
 <body>
     <?php include('../templates/body.php') ?>
-    <h1>Confirmation des note_informatiquermations saisies</h1>
+    <h1>Confirmation des informations saisies</h1>
     <form enctype="multipart/form-data" action="./save" method="post">
         <label for="prenom">Prénom : </label>
         <input type="text" name="prenom" id="prenom" value="<?php echo isset($_SESSION['form']['prenom'])?$_SESSION['form']['prenom']:''?>" disabled>
