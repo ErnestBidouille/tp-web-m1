@@ -10,7 +10,7 @@
     <?php include('../templates/body.php');?>
 
     <h2>
-      <span class="badge badge-primary">M1</span> Méthodes infos Appliquées pour la Gestion des Entreprises
+      <span class="badge badge-primary">M1</span> Méthodes informatiques Appliquées pour la Gestion des Entreprises
     </h2>
     <i class="text-dark">Lien vers <a href="https://dauphine.fr" target="_blank">dauphine.fr</a></i>
 
@@ -49,15 +49,15 @@
     </div>
 
     <p class="text-justify">
-      La 1ère année de Master - <i>Méthodes infos Appliquées pour la Gestion des Entreprises</i> (<b>MIAGE</b>) a pour vocation de former des professionnels et des chercheurs maîtrisant parfaitement l'outil info et possédants une bonne connaissance de l'organisation et du fonctionnement de l'entreprise. MIAGE garde un ancrage fort dans le réseau national des MIAGE, qui regroupe l'ensemble des formations analogues dans vingt universités française.
+      La 1ère année de Master - <i>Méthodes informatiques Appliquées pour la Gestion des Entreprises</i> (<b>MIAGE</b>) a pour vocation de former des professionnels et des chercheurs maîtrisant parfaitement l'outil informatique et possédants une bonne connaissance de l'organisation et du fonctionnement de l'entreprise. MIAGE garde un ancrage fort dans le réseau national des MIAGE, qui regroupe l'ensemble des formations analogues dans vingt universités française.
     </p>
 
     <div class="d-flex flex-column">
       <div>
-        <i data-feather="chevron-right"></i> Utiliser, maîtriser et intégrer les technologies info
+        <i data-feather="chevron-right"></i> Utiliser, maîtriser et intégrer les technologies informatiques
       </div>
       <div>
-        <i data-feather="chevron-right"></i> D'aborder la modélisation de systèmes d'note_informatiquermation et les méthodes de conduites de projet
+        <i data-feather="chevron-right"></i> D'aborder la modélisation de systèmes d'information et les méthodes de conduites de projet
       </div>
       <div>
         <i data-feather="chevron-right"></i> Comprendre le fonctionnement des organisations, leurs structures, notamment dans la dimension opérationnelle et humaine
