@@ -27,7 +27,7 @@
             echo <<<html
             <p>Candidature en cours de validation</p>
             <a href='./' class="btn-primary">Retour</a>
-            html;
+html;
         }else{
             $row = $result->fetch();
             var_dump($row);
@@ -35,7 +35,7 @@
                 echo <<<html
                 Erreur ! Cet étudiant est déjà inscrit
                 <a href='./' class="btn-primary">Retour</a>
-                html;
+html;
             }else{
                 echo '<table><tr><th></th><th>Anciennes valeurs</th><th>Nouvelles valeurs</th></tr>';
                 
