@@ -6,7 +6,9 @@
         var_dump($_FILES);
         foreach($_POST as $key=>$value){
             if(empty(trim($value))){
-                $errors[$key]= 'Le champs ne peut être vide.';
+                if($key != 'lmt' && !isset($_FILES['lm'])){
+                    $errors[$key]= 'Le champs ne peut être vide.';
+                }
             }
         }
         $dob = strtotime(str_replace("/", "-", $_POST["date_de_naissance"]));
@@ -48,6 +50,7 @@
         }
 
         $_SESSION['form'] = $_POST;
+        $_SESSION['file'] = $_FILES['lm'];
         if(isset($errors)){
             $_SESSION['errors'] = $errors;
             header('Location: ./candidater.php');
@@ -66,60 +69,40 @@
 <body>
     <?php include('../templates/body.php') ?>
     <h1>Confirmation des informations saisies</h1>
-    <form enctype="multipart/form-data" action="./save" method="post">
+    <form enctype="multipart/form-data" action="./save.php" method="post">
         <label for="prenom">Prénom : </label>
-        <input type="text" name="prenom" id="prenom" value="<?php echo isset($_SESSION['form']['prenom'])?$_SESSION['form']['prenom']:''?>" disabled>
-        <?php echo isset($_SESSION['errors']['prenom'])?'<div class="error">'.$_SESSION['errors']['prenom'].'</div>':''?>
+        <input type="text" name="prenom" id="prenom" value="<?php echo $_SESSION['form']['prenom']?>" disabled>
         
         <label for="nom">Nom : </label>
-        <input type="text" name="nom" id="nom" value="<?php echo isset($_SESSION['form']['nom'])?$_SESSION['form']['nom']:''?>" disabled>
-        <?php echo isset($_SESSION['errors']['nom'])?'<div class="error">'.$_SESSION['errors']['nom'].'</div>':''?>
+        <input type="text" name="nom" id="nom" value="<?php echo $_SESSION['form']['nom']?>" disabled>
         
         <label for="adresse">Adresse : </label>
-        <input type="text" name="adresse" id="adresse" value="<?php echo isset($_SESSION['form']['adresse'])?$_SESSION['form']['adresse']:''?>" disabled>
-        <?php echo isset($_SESSION['errors']['adresse'])?'<div class="error">'.$_SESSION['errors']['adresse'].'</div>':''?>
+        <input type="text" name="adresse" id="adresse" value="<?php echo $_SESSION['form']['adresse']?>" disabled>
         
         <label for="date_de_naissance">Date de naissance : </label>
-        <input type="date" name="date_de_naissance" id="date_de_naissance" value="<?php echo isset($_SESSION['form']['date_de_naissance'])?$_SESSION['form']['date_de_naissance']:''?>" disabled>
-        <?php echo isset($_SESSION['errors']['date_de_naissance'])?'<div class="error">'.$_SESSION['errors']['date_de_naissance'].'</div>':''?>
+        <input type="date" name="date_de_naissance" id="date_de_naissance" value="<?php echo $_SESSION['form']['date_de_naissance']?>" disabled>
         
         <p>Parcours : 
-            <?php echo isset($_SESSION['form']['parcours'])?$_SESSION['form']['parcours']:''?>
+            <?php echo $_SESSION['form']['parcours']?>
         </p>
         
         <label for="maths">Note en mathématiques : </label>
-        <input type="number" name="maths" id="maths" min="0" max="20" step="0.01" value="<?php echo isset($_SESSION['form']['maths'])?$_SESSION['form']['maths']:''?>" disabled>
-        <?php echo isset($_SESSION['errors']['maths'])?'<div class="error">'.$_SESSION['errors']['maths'].'</div>':''?>
+        <input type="number" name="maths" id="maths" min="0" max="20" step="0.01" value="<?php echo $_SESSION['form']['maths']?>" disabled>
         
         <label for="note_informatique">Note en info : </label>
-        <input type="number" name="note_informatique" id="note_informatique" min="0" max="20" step="0.01" value="<?php echo isset($_SESSION['form']['note_informatique'])?$_SESSION['form']['note_informatique']:''?>" disabled>
-        <?php echo isset($_SESSION['errors']['note_informatique'])?'<div class="error">'.$_SESSION['errors']['note_informatique'].'</div>':''?>
+        <input type="number" name="note_informatique" id="note_informatique" min="0" max="20" step="0.01" value="<?php echo $_SESSION['form']['note_informatique']?>" disabled>
         
         <label for="english">Note en anglais : </label>
-        <input type="number" name="english" id="english" min="0" max="20" step="0.01" value="<?php echo isset($_SESSION['form']['english'])?$_SESSION['form']['english']:''?>" disabled>
-        <?php echo isset($_SESSION['errors']['english'])?'<div class="error">'.$_SESSION['errors']['english'].'</div>':''?>
+        <input type="number" name="english" id="english" min="0" max="20" step="0.01" value="<?php echo $_SESSION['form']['english']?>" disabled>
         
         <label for="average">Moyenne générale : </label>
-        <input type="number" name="average" id="average" min="0" max="20" step="0.01" value="<?php echo isset($_SESSION['form']['average'])?$_SESSION['form']['average']:''?>" disabled>
-        <?php echo isset($_SESSION['errors']['average'])?'<div class="error">'.$_SESSION['errors']['average'].'</div>':''?>
+        <input type="number" name="average" id="average" min="0" max="20" step="0.01" value="<?php echo $_SESSION['form']['average']?>" disabled>
         
         <div>Lettre de motivation :</div>
-        <?php 
-            if(!empty($_SESSION['form']['lmt'])){
-                echo $_SESSION['form']['lmt'];
-            }else{
-                echo $_FILES['name'];
-            }
-        ?>
-        <p>Ces note_informatiquermations sont-elles correctes ?</p>
-        <a href="./candidater" class="btn btn-primary">Retour</a>
+        <?php echo empty($_SESSION['form']['lmt'])? $_FILES['lm']['name'] : $_SESSION['form']['lmt']?>
+        <p>Ces informations sont-elles correctes ?</p>
+        <a href="./candidater.php" class="btn btn-primary">Retour</a>
         <input type="submit" value="Sauvegarde">
     </form>
-    <style>
-        form{
-            display:flex;
-            flex-direction: column;
-        }
-    </style>
 </body>
 </html>

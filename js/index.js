@@ -21,8 +21,10 @@ function ChangeLetterFormat() {
     if ($('#choicelm').prop('checked')) {
         $('#lmt').show();
         $('#lm').hide();
+        $('#lm').val('');
     } else {
         $('#lmt').hide();
+        $('#lmt').val('');
         $('#lm').show();
     }
 }

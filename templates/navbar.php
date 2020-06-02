@@ -10,13 +10,13 @@
         <a class="nav-link" href="../pages">Accueil</a>
       </li>
       <li class="nav-item" id="nav-matieres">
-        <a class="nav-link" href="../pages/matieres">Matières</a>
+        <a class="nav-link" href="../pages/matieres.php">Matières</a>
       </li>
       <li class="nav-item" id="nav-etudiants"></li>
-        <a class="nav-link" href="../pages/etudiants">Etudiants</a>
+        <a class="nav-link" href="../pages/etudiants.php">Etudiants</a>
       </li>
       <li class="nav-item" id="nav-candidater">
-        <a class="nav-link" href="../pages/candidater">Candidater</a>
+        <a class="nav-link" href="../pages/candidater.php">Candidater</a>
       </li>
     </ul>
   </div>
