@@ -82,9 +82,15 @@
     <title>Master MIAGE - Confirmation inscription</title>
 </head>
 
-<body>
+<body class="px-1">
     <?php include('../templates/body.php') ?>
-    <h1>Confirmation des informations saisies</h1>
+
+    <div class="mb-3">
+      <h3>Confirmation des informations saisies</h3>
+      <div class="ml-2" style="background: rgb(238, 60, 55);width: 80px;height: 4px;">
+      </div>
+    </div>
+
     <form enctype="multipart/form-data" action="./save" method="post">
         <label for="prenom">Prénom : </label>
         <input type="text" name="prenom" id="prenom" value="<?php echo $_SESSION['form']['prenom']?>" disabled>
@@ -98,9 +104,12 @@
         <label for="date_de_naissance">Date de naissance : </label>
         <input type="date" name="date_de_naissance" id="date_de_naissance" value="<?php echo $_SESSION['form']['date_de_naissance']?>" disabled>
         
-        <p>Parcours : 
-            <?php echo $_SESSION['form']['parcours']?>
-        </p>
+        <label>Parcours :</label>
+        <select name="parcours" id="parcours" disabled>
+            <option value="parcours">
+                <?php echo $_SESSION['form']['parcours']?>
+            </option> 
+        </select>
         
         <label for="note_maths">Note en mathématiques : </label>
         <input type="number" name="note_maths" id="note_maths" min="0" max="20" step="0.01" value="<?php echo $_SESSION['form']['note_maths']?>" disabled>
@@ -114,8 +123,8 @@
         <label for="moyenne">Moyenne générale : </label>
         <input type="number" name="moyenne" id="moyenne" min="0" max="20" step="0.01" value="<?php echo $_SESSION['form']['moyenne']?>" disabled>
         
-        <div>Lettre de motivation :</div>
-        <?php echo empty($_SESSION['form']['lmt'])? $_FILES['lm']['name'] : $_SESSION['form']['lmt']?>
+        <label>Lettre de motivation :</label>
+        <a href="./file?id=<?php echo $_SESSION['form']['lm']?>" target="_blank" class="btn btn-info w-20 align-self-start">Visualiser la lettre de motivation</a>
         <p>Ces informations sont-elles correctes ?</p>
         <div class="d-flex flex-row">
             <a href="./candidater" class="btn btn-light w-25 align-self-end ml-2">Retour</a>
