@@ -23,7 +23,7 @@ if($result->rowCount() == 0){
 }else{
     $row = $result->fetch();
     if($row['inscrit'] == 1){
-        echo '<script>alert("Erreur ! Cette personne est inscrite dans ce master");window.location.href = '.';</script>';
+        ?><script>alert("Erreur ! Cette personne est inscrite dans ce master");window.location.href = '.';</script><?php
     }else{
         ?>
         <!DOCTYPE html>
