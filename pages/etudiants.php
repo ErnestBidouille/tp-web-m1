@@ -13,15 +13,15 @@
     ?>
     <div class="mb-3">
         <h3>Nos étudiants inscrits</h3>
-            <div class="ml-2" style="background: rgb(238, 60, 55);width: 80px;height: 4px;">
-            </div>
+        <div class="ml-2" style="background: rgb(238, 60, 55);width: 80px;height: 4px;">
+        </div>
     </div>
     <?php
       $results = $bdd->query('SELECT * FROM `etudiant` JOIN stage ON id_stage WHERE inscrit=1 AND stage=id_stage');
       $n = $results->rowCount();
 
       echo <<< html
-      <div class="mx-4 alert alert-info"><strong>Info</strong>: $n étudiants inscrit(s).</div>
+      <div class="alert alert-info"><strong>Info</strong>: $n étudiants inscrit(s).</div>
 html;
     ?>
 

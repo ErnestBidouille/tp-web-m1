@@ -14,8 +14,13 @@ function PageCandidater() {
     $('#nav-candidater').addClass('active');
 }
 
-const b64toBlob = (base64, type = 'application/octet-stream') =>
-    fetch(`data:${type};base64,${base64}`).then(res => res.blob());
+function toggleMatiere(id) {
+    if ($(`#${id}`).hasClass('ellipsis')) {
+        $(`#${id}`).removeClass('ellipsis');
+    } else {
+        $(`#${id}`).addClass('ellipsis');
+    }
+}
 
 function ChangeLetterFormat() {
     if ($('#choicelm').prop('checked')) {
