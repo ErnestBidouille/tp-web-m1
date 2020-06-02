@@ -42,9 +42,7 @@ if($result->rowCount() == 0){
             </div>
 
             <?php
-            unset($_SESSION['form']['MAX_FILE_SIZE']);
-            unset($_SESSION['form']['choicelm']);
-            unset($_SESSION['form']['lmt']);
+            $form = $_SESSION['form'];
             echo '<table class="table"><tr><th></th><th>Anciennes valeurs</th><th>Nouvelles valeurs</th></tr>';
             $keys = [
                 'prenom'=>'Prénom',
@@ -55,15 +53,12 @@ if($result->rowCount() == 0){
                 'note_maths'=>'Note en mathématiques',
                 'note_informatique'=>'Note en informatique',
                 'note_anglais'=>'Note en anglais',
-                'moyenne'=>'Moyenne générale',
-                
-                
+                'moyenne'=>'Moyenne générale'
             ];
-            foreach($_SESSION['form'] as $key=>$value){
-                if($key=='lm'){
-                    continue;
+            foreach($row as $key=>$value){
+                if(isset($form[$key])){
+                    echo '<tr><td>'.$keys[$key].'</td><td>'.$value.'</td><td>'.$form[$key].'</td></tr>';
                 }
-                echo '<tr><td>'.$keys[$key].'</td><td>'.$row[$key].'</td><td>'.$value.'</td></tr>';
             }
             echo '<tr><td>Lettre de motivation</td><td><a href="./file?id='.$row['lettre_motivation'].'" target="_blank">Télécharger</a></td><td><a href="./file?id='.$_SESSION['form']['lm'].'" target="_blank">Télécharger</a></td></tr></table>';
             ?>

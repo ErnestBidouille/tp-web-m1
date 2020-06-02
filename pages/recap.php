@@ -51,7 +51,6 @@
             $errors['lm'] = 'Le fichier ne peut pas dépasser la taille de 2Mo';
         }
         $_SESSION['form'] = $_POST;
-        $_SESSION['file'] = $_FILES['lm'];
         if(isset($errors)){
             $_SESSION['errors'] = $errors;
             header('Location: ./candidater');
@@ -59,18 +58,20 @@
         }
         if($_FILES['lm']['size'] != 0){
             $blob = file_get_contents($_FILES['lm']['tmp_name'], 'rb');
+            $mime = $_FILES['lm']['type'];
         }
         else{
             $tmpfname = tempnam("../tmp", "tmp");
             $handle = fopen($tmpfname, "w");
             fwrite($handle, $_POST['lmt']);
             fclose($handle);
-            $blob = file_get_contents($tmpfname, 'rb').
+            $blob = file_get_contents($tmpfname, 'rb');
+            $mime = 'text/plain';
             unlink($tmpfname);
         }
         $req = $bdd->prepare('INSERT INTO files(mime, data) VALUES (:mime, :data);');
         $req->execute(array(
-            'mime'=> $_FILES['lm']['type'],
+            'mime'=> $mime,
             'data'=>$blob
         ));  
         $_SESSION['form']['lm'] = $bdd->lastInsertId();
