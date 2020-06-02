@@ -11,7 +11,7 @@
 
     <?php
         $id = $_GET['id']; // nice trick damn
-        $result = $bdd->query('SELECT * FROM etudiant WHERE id_etudiant=' . $id . ';');
+        $result = $bdd->query('SELECT * FROM etudiant JOIN stage ON id_stage WHERE inscrit=1 AND stage=id_stage AND id_etudiant=' . $id . ';');
         if ($result->rowCount() != 0) {
             $etudiant = $result->fetch();
             $img = $etudiant['photo'] ? $etudiant['photo'] : 'https://shorturl.at/mLQW8';
@@ -22,6 +22,9 @@
             $adresse = $etudiant['adresse'];
             $parcours = $etudiant['parcours'];
             $cv = $etudiant['cv'];
+            $domaine = $etudiant['domaine'];
+            $entreprise = $etudiant['entreprise'];
+            $lien_entreprise = $etudiant['lien_entreprise'];
             echo <<< html
             <div class="container d-flex flex-row border-bottom pb-4">
                 <div class="d-flex flex-column">
@@ -42,6 +45,12 @@
                     </div>
                     <div class="mt-1">
                         <b>Parcours initial</b>: <span class="badge badge-danger">$parcours</span>
+                    </div>
+                    <div class="mt-1">
+                        <b>Domaine</b>: <span class="badge badge-warning">$domaine</span>
+                    </div>
+                    <div class="mt-1">
+                        <b>Nom de l'entreprise</b>: $entreprise (<a href="$lien_entreprise" target="_blank">site</a>)
                     </div>
                 </div>
             </div>
