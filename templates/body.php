@@ -1,5 +1,4 @@
 <?php
-    include('../templates/bdd.php');
     include('../templates/navbar.php');
     include('../templates/scripts.php');
 ?>

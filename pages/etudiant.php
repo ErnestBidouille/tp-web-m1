@@ -7,9 +7,9 @@
 </head>
 
 <body>
-    <?php include('../templates/body.php') ?>
-
     <?php
+        include('../templates/bdd.php'); 
+        include('../templates/body.php');
         $id = $_GET['id']; // nice trick damn
         $result = $bdd->query('SELECT * FROM etudiant JOIN stage ON id_stage WHERE inscrit=1 AND stage=id_stage AND id_etudiant=' . $id . ';');
         if ($result->rowCount() != 0) {

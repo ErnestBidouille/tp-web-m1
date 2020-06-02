@@ -7,7 +7,7 @@
 </head>
 
 <body class="px-1">
-    <?php include('../templates/body.php'); include('../templates/matiere.php'); ?>
+    <?php include('../templates/bdd.php'); include('../templates/body.php'); include('../templates/matiere.php'); ?>
 
     
     <div class="mb-3">

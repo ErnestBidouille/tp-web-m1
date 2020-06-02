@@ -8,6 +8,7 @@
 
 <body class="px-1">
     <?php
+      include('../templates/bdd.php');
       include('../templates/body.php');
 
       $results = $bdd->query('SELECT * FROM `etudiant` JOIN stage ON id_stage WHERE inscrit=1 AND stage=id_stage');

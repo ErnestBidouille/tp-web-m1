@@ -1,6 +1,5 @@
 <?php
     include('../templates/bdd.php');
-    session_start();
     if($_SERVER['REQUEST_METHOD']=='POST' && !empty($_POST)){
         var_dump($_POST);
         var_dump($_FILES);
@@ -25,24 +24,24 @@
         if(strlen($nom) < 3 || strlen($nom) > 20 || !ctype_alpha($nom)){
             $errors['nom'] = 'Le nom ne doit être composé que de lettres et d\'une longueur 3 à 20 caractères.';
         }
-        $maths = trim($_POST['maths']);
-        if($maths < 10 || $maths > 20){
-            $errors['maths'] = 'Une note supérieure ou égale à 10 et inférieure ou égale à 20 est requise en mathématiques.';
+        $note_maths = trim($_POST['note_maths']);
+        if($note_maths < 10 || $note_maths > 20){
+            $errors['note_maths'] = 'Une note supérieure ou égale à 10 et inférieure ou égale à 20 est requise en mathématiques.';
         }
 
         $note_informatique = trim($_POST['note_informatique']);
-        if($note_informatique < 15 || $maths > 20){
+        if($note_informatique < 15 || $note_maths > 20){
             $errors['note_informatique'] = 'Une note supérieure ou égale à 15 et inférieure ou égale à 20 est requise en info.';
         }
 
-        $english = trim($_POST['english']);
-        if($english < 12 || $maths > 20){
-            $errors['english'] = 'Une note supérieure ou égale à 12 et inférieure ou égale à 20 est requise en anglais.';
+        $note_anglais = trim($_POST['note_anglais']);
+        if($note_anglais < 12 || $note_maths > 20){
+            $errors['note_anglais'] = 'Une note supérieure ou égale à 12 et inférieure ou égale à 20 est requise en anglais.';
         }
 
-        $average = trim($_POST['average']);
-        if($average < 14 || $maths > 20){
-            $errors['average'] = 'Une note supérieure ou égale à 14 et inférieure ou égale à 20 est requise en moyenne générale.';
+        $moyenne = trim($_POST['moyenne']);
+        if($moyenne < 14 || $note_maths > 20){
+            $errors['moyenne'] = 'Une note supérieure ou égale à 14 et inférieure ou égale à 20 est requise en moyenne générale.';
         }
         
         if(empty($_POST['lmt']) && $_FILES['lm']['size'] == 0){
@@ -56,6 +55,9 @@
             header('Location: ./candidater.php');
             exit();
         }
+        unset($_SESSION['form']['MAX_FILE_SIZE']);
+        unset($_SESSION['form']['choicelm']);
+        unset($_SESSION['form']['lmt']);
     }
 ?>
 <!DOCTYPE html>
@@ -86,17 +88,17 @@
             <?php echo $_SESSION['form']['parcours']?>
         </p>
         
-        <label for="maths">Note en mathématiques : </label>
-        <input type="number" name="maths" id="maths" min="0" max="20" step="0.01" value="<?php echo $_SESSION['form']['maths']?>" disabled>
+        <label for="note_maths">Note en mathématiques : </label>
+        <input type="number" name="note_maths" id="note_maths" min="0" max="20" step="0.01" value="<?php echo $_SESSION['form']['note_maths']?>" disabled>
         
         <label for="note_informatique">Note en info : </label>
         <input type="number" name="note_informatique" id="note_informatique" min="0" max="20" step="0.01" value="<?php echo $_SESSION['form']['note_informatique']?>" disabled>
         
-        <label for="english">Note en anglais : </label>
-        <input type="number" name="english" id="english" min="0" max="20" step="0.01" value="<?php echo $_SESSION['form']['english']?>" disabled>
+        <label for="note_anglais">Note en anglais : </label>
+        <input type="number" name="note_anglais" id="note_anglais" min="0" max="20" step="0.01" value="<?php echo $_SESSION['form']['note_anglais']?>" disabled>
         
-        <label for="average">Moyenne générale : </label>
-        <input type="number" name="average" id="average" min="0" max="20" step="0.01" value="<?php echo $_SESSION['form']['average']?>" disabled>
+        <label for="moyenne">Moyenne générale : </label>
+        <input type="number" name="moyenne" id="moyenne" min="0" max="20" step="0.01" value="<?php echo $_SESSION['form']['moyenne']?>" disabled>
         
         <div>Lettre de motivation :</div>
         <?php echo empty($_SESSION['form']['lmt'])? $_FILES['lm']['name'] : $_SESSION['form']['lmt']?>

@@ -6,8 +6,8 @@
 </head>
 <body>
     <?php
+        include('../templates/bdd.php');
         include('../templates/body.php');
-        session_start();
     ?>
     <div class="container">
         <form enctype="multipart/form-data" action="./recap.php" method="post">
@@ -46,9 +46,9 @@
             </div>
             
             <div class="my-1 d-flex flex-column">
-                <label for="maths">Note en mathématiques : </label>
-                <input type="number" name="maths" id="maths" min="0" max="20" step="0.01" value="<?php echo isset($_SESSION['form']['maths'])?$_SESSION['form']['maths']:''?>">
-                <?php echo isset($_SESSION['errors']['maths'])?'<div class="error">'.$_SESSION['errors']['maths'].'</div>':''?>
+                <label for="note_maths">Note en mathématiques : </label>
+                <input type="number" name="note_maths" id="note_maths" min="0" max="20" step="0.01" value="<?php echo isset($_SESSION['form']['note_maths'])?$_SESSION['form']['note_maths']:''?>">
+                <?php echo isset($_SESSION['errors']['note_maths'])?'<div class="error">'.$_SESSION['errors']['note_maths'].'</div>':''?>
             </div>
             
             <div class="my-1 d-flex flex-column">
@@ -58,15 +58,15 @@
             </div>
             
             <div class="my-1 d-flex flex-column">
-                <label for="english">Note en anglais : </label>
-                <input type="number" name="english" id="english" min="0" max="20" step="0.01" value="<?php echo isset($_SESSION['form']['english'])?$_SESSION['form']['english']:''?>">
-                <?php echo isset($_SESSION['errors']['english'])?'<div class="error">'.$_SESSION['errors']['english'].'</div>':''?>
+                <label for="note_anglais">Note en anglais : </label>
+                <input type="number" name="note_anglais" id="note_anglais" min="0" max="20" step="0.01" value="<?php echo isset($_SESSION['form']['note_anglais'])?$_SESSION['form']['note_anglais']:''?>">
+                <?php echo isset($_SESSION['errors']['note_anglais'])?'<div class="error">'.$_SESSION['errors']['note_anglais'].'</div>':''?>
             </div>
             
             <div class="my-1 d-flex flex-column">
-                <label for="average">Moyenne générale : </label>
-                <input type="number" name="average" id="average" min="0" max="20" step="0.01" value="<?php echo isset($_SESSION['form']['average'])?$_SESSION['form']['average']:''?>">
-                <?php echo isset($_SESSION['errors']['average'])?'<div class="error">'.$_SESSION['errors']['average'].'</div>':''?>
+                <label for="moyenne">Moyenne générale : </label>
+                <input type="number" name="moyenne" id="moyenne" min="0" max="20" step="0.01" value="<?php echo isset($_SESSION['form']['moyenne'])?$_SESSION['form']['moyenne']:''?>">
+                <?php echo isset($_SESSION['errors']['moyenne'])?'<div class="error">'.$_SESSION['errors']['moyenne'].'</div>':''?>
             </div>
             
             <div class="my-1 d-flex flex-column">

@@ -7,7 +7,10 @@
 </head>
 
 <body class="px-1">
-    <?php include('../templates/body.php');?>
+    <?php 
+      include('../templates/bdd.php');
+      include('../templates/body.php');
+    ?>
 
     <h2>
       <span class="badge badge-primary">M1</span> Méthodes informatiques Appliquées pour la Gestion des Entreprises
@@ -96,7 +99,7 @@
       <footer class="blockquote-footer">George Floyd <cite title="Source Title">ancien étudiant du master</cite></footer>
     </blockquote>
 
-    <?php include('../templates/endbody.php') ?>
+    <?php include('../templates/endbody.php'); include('../templates/unset_session.php'); ?>
     <script>
       PageAccueil();
     </script>
