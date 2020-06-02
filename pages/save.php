@@ -23,10 +23,10 @@
                 'note_anglais'=>$_SESSION['form']['note_anglais'],
                 'moyenne'=>$_SESSION['form']['moyenne']
             ));
-            echo <<<html
-            <p>Candidature en cours de validation</p>
-            <a href='./' class="btn-primary">Retour</a>
-html;
+            include('../templates/unset_session.php');
+            ?>
+            <script>alert('Candidature en cours de validation');window.location.href = '.';</script>
+            <?php
         }else{
             $row = $result->fetch();
             if($row['inscrit'] == 1){
@@ -42,7 +42,7 @@ html;
                 echo '</table>';
                 ?>
                 <a href="." class="btn-primary">Annuler les changements</a>
-                <a href="--------" class="btn-primary">Confirmer les changements</a>
+                <a href="./update.php" class="btn-primary">Confirmer les changements</a>
                 <a href="./delete.php" class="btn-danger">Supprimer la candidature</a>
                 <?php
             }

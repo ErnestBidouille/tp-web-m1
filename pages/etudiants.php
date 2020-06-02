@@ -16,7 +16,7 @@
 
       echo <<< html
       <div class="mx-4 alert alert-info"><strong>Info</strong>: $n étudiants inscrit(s).</div>
-      html;
+html;
     ?>
 
     <div class="card-columns">
@@ -37,7 +37,7 @@
               </p>
             </div> 
           </div>
-          html;
+html;
         }
       ?>
     </div>

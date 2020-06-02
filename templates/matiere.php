@@ -17,6 +17,6 @@ function TableauMatiere($result) {
         </div>
         <p class="mb-1 ellipsis">$description</p>
         </a>
-        html;
+html;
       }
 }

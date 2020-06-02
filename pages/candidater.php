@@ -10,6 +10,7 @@
         include('../templates/body.php');
     ?>
     <div class="container">
+        <h1>Candidater au master</h1>
         <form enctype="multipart/form-data" action="./recap.php" method="post">
             <div class="my-1 d-flex flex-column">
                 <label for="prenom">Prénom : </label>
