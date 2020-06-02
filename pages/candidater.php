@@ -103,7 +103,7 @@
                     <div class="my-1 d-flex flex-column mx-4">
                         <div class="label">Lettre de motivation :</div>
                         <div class="d-flex flex-row align-items-baseline my-3">
-                            <span>Envoyer un fichier</span>
+                            <span>Envoyer un fichier (Taille maximale : 2 Mo)</span>
                             <label class="switch mx-2">
                                 <input type="checkbox" name="choicelm" id="choicelm" onChange="ChangeLetterFormat()" <?php echo isset($_SESSION['form']['choicelm'])?'checked':''?>>
                                 <span class="slider round"></span>

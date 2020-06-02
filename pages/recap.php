@@ -47,7 +47,9 @@
         if(empty($_POST['lmt']) && $_FILES['lm']['size'] == 0){
             $errors['lm'] = 'Veuillez fournir une lettre de motivation';
         }
-
+        if($_FILES['lm']['size'] > 2097152){
+            $errors['lm'] = 'Le fichier ne peut pas dépasser la taille de 2Mo';
+        }
         $_SESSION['form'] = $_POST;
         $_SESSION['file'] = $_FILES['lm'];
         if(isset($errors)){
