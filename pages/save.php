@@ -11,7 +11,7 @@
         $q = 'SELECT * FROM etudiant where nom=\''.$_SESSION['form']['nom'].'\' and prenom=\''.$_SESSION['form']['prenom'].'\';';
         $result = $bdd->query($q);
         if($result->rowCount() == 0){
-            $req = $bdd->prepare('INSERT INTO etudiant(nom, prenom, adresse, date_de_naissance, parcours, note_maths, note_informatique, note_anglais, moyenne) VALUES(:nom, :prenom, :adresse, :date_de_naissance, :parcours, :note_maths, :note_informatique, :note_anglais, :moyenne)');
+            $req = $bdd->prepare('INSERT INTO etudiant(nom, prenom, adresse, date_de_naissance, parcours, note_maths, note_informatique, note_anglais, moyenne, lettre_motivation) VALUES(:nom, :prenom, :adresse, :date_de_naissance, :parcours, :note_maths, :note_informatique, :note_anglais, :moyenne, :lettre_motivation)');
             $req->execute(array(
                 'nom'=> $_SESSION['form']['nom'],
                 'prenom'=>$_SESSION['form']['prenom'],
@@ -21,7 +21,8 @@
                 'note_maths'=>$_SESSION['form']['note_maths'],
                 'note_informatique'=>$_SESSION['form']['note_informatique'],
                 'note_anglais'=>$_SESSION['form']['note_anglais'],
-                'moyenne'=>$_SESSION['form']['moyenne']
+                'moyenne'=>$_SESSION['form']['moyenne'],
+                'lettre_motivation'=>$_SESSION['form']['lm']
             ));
             include('../templates/unset_session.php');
             ?>
@@ -35,15 +36,23 @@
                 <a href='./' class="btn-primary">Retour</a>
 html;
             }else{
+                unset($_SESSION['form']['MAX_FILE_SIZE']);
+                unset($_SESSION['form']['choicelm']);
+                unset($_SESSION['form']['lmt']);
                 echo '<table><tr><th></th><th>Anciennes valeurs</th><th>Nouvelles valeurs</th></tr>';
                 foreach($_SESSION['form'] as $key=>$value){
+                    if($key=='lm'){
+                        continue;
+                    }
                     echo '<tr><td>'.$key.'</td><td>'.$row[$key].'</td><td>'.$value.'</td></tr>';
                 }
+                echo '<tr><td>Lettre de motivation</td><td><a href="./file?id='.$row['lettre_motivation'].'" target="_blank">Télécharger</a></td><td><a href="./file?id='.$_SESSION['form']['lm'].'" target="_blank">Télécharger</a></td></tr>';
+                
                 echo '</table>';
                 ?>
-                <a href="." class="btn-primary">Annuler les changements</a>
-                <a href="./update.php" class="btn-primary">Confirmer les changements</a>
-                <a href="./delete.php" class="btn-danger">Supprimer la candidature</a>
+                <a href="./cancel" class="btn btn-light">Annuler</a>
+                <a href="./delete" class="btn btn-danger">Supprimer la candidature</a>
+                <a href="./update" class="btn btn-primary">Confirmer</a>
                 <?php
             }
         }

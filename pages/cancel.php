@@ -1,0 +1,1 @@
+<script>alert('Saisie annulée');window.location = '.'</script>

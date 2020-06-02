@@ -1,11 +1,11 @@
 <?php
     include('../templates/bdd.php');
     if($_SERVER['REQUEST_METHOD']=='POST' && !empty($_POST)){
-        var_dump($_POST);
-        var_dump($_FILES);
         foreach($_POST as $key=>$value){
             if(empty(trim($value))){
-                if($key != 'lmt' && !isset($_FILES['lm'])){
+                if($key == 'lmt' && isset($_FILES['lm'])){
+                    continue;
+                }else{
                     $errors[$key]= 'Le champs ne peut être vide.';
                 }
             }
@@ -52,12 +52,26 @@
         $_SESSION['file'] = $_FILES['lm'];
         if(isset($errors)){
             $_SESSION['errors'] = $errors;
-            header('Location: ./candidater.php');
+            header('Location: ./candidater');
             exit();
         }
-        unset($_SESSION['form']['MAX_FILE_SIZE']);
-        unset($_SESSION['form']['choicelm']);
-        unset($_SESSION['form']['lmt']);
+        if($_FILES['lm']['size'] != 0){
+            $blob = file_get_contents($_FILES['lm']['tmp_name'], 'rb');
+        }
+        else{
+            $tmpfname = tempnam("../tmp", "tmp");
+            $handle = fopen($tmpfname, "w");
+            fwrite($handle, $_POST['lmt']);
+            fclose($handle);
+            $blob = file_get_contents($tmpfname, 'rb').
+            unlink($tmpfname);
+        }
+        $req = $bdd->prepare('INSERT INTO files(mime, data) VALUES (:mime, :data);');
+        $req->execute(array(
+            'mime'=> $_FILES['lm']['type'],
+            'data'=>$blob
+        ));  
+        $_SESSION['form']['lm'] = $bdd->lastInsertId();
     }
 ?>
 <!DOCTYPE html>
@@ -71,7 +85,7 @@
 <body>
     <?php include('../templates/body.php') ?>
     <h1>Confirmation des informations saisies</h1>
-    <form enctype="multipart/form-data" action="./save.php" method="post">
+    <form enctype="multipart/form-data" action="./save" method="post">
         <label for="prenom">Prénom : </label>
         <input type="text" name="prenom" id="prenom" value="<?php echo $_SESSION['form']['prenom']?>" disabled>
         
@@ -103,8 +117,10 @@
         <div>Lettre de motivation :</div>
         <?php echo empty($_SESSION['form']['lmt'])? $_FILES['lm']['name'] : $_SESSION['form']['lmt']?>
         <p>Ces informations sont-elles correctes ?</p>
-        <a href="./candidater.php" class="btn btn-primary">Retour</a>
-        <input type="submit" value="Sauvegarde">
+        <div class="d-flex flex-row">
+            <a href="./candidater" class="btn btn-light w-25 align-self-end ml-2">Retour</a>
+            <input class="btn btn-primary w-25 align-self-end ml-2" type="submit" value="Sauvegarder">
+        </div>
     </form>
 </body>
 </html>
