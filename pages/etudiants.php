@@ -31,7 +31,7 @@ html;
           <div class="card">
             <img class="card-img-top" src="$photo" alt="Photo de $prenom $nom">
             <div class="card-body">
-              <a class="card-title text-dark" href="./etudiant?id=$id"><h5># $prenom $nom</h5></a>
+              <a class="card-title text-dark" href="./etudiant.php?id=$id"><h5># $prenom $nom</h5></a>
               <p class="card-text">
                 <span class="badge badge-warning">$domaine</span>
               </p>

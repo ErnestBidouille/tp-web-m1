@@ -54,7 +54,7 @@
                     </div>
                 </div>
             </div>
-            html;
+html;
         } else {
             echo <<< html
             <div>
@@ -83,7 +83,7 @@
                     </div>
                 </div>
             </div>
-            html;
+html;
         }
     ?>
 

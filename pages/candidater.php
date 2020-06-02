@@ -11,28 +11,35 @@
     ?>
     <div class="container">
         <h1>Candidater au master</h1>
-        <form enctype="multipart/form-data" action="./recap.php" method="post">
-            <div class="my-1 d-flex flex-column">
-                <label for="prenom">Prénom : </label>
-                <input type="text" name="prenom" id="prenom" value="<?php echo isset($_SESSION['form']['prenom'])?$_SESSION['form']['prenom']:''?>">
-                <?php echo isset($_SESSION['errors']['prenom'])?'<div class="error">'.$_SESSION['errors']['prenom'].'</div>':''?>
+        <form class="d-flex flex-column" enctype="multipart/form-data" action="./recap.php" method="post">
+            <div class="d-flex flex-row border-top py-3">
+                <h5 class="mr-4 text-muted">
+                    Informations personnelles
+                </h5>
+                <div class="d-flex flex-fill flex-column mx-4">
+                    <div class="my-1 d-flex flex-column">
+                        <label for="prenom">Prénom : </label>
+                        <input type="text" name="prenom" id="prenom" value="<?php echo isset($_SESSION['form']['prenom'])?$_SESSION['form']['prenom']:''?>">
+                        <?php echo isset($_SESSION['errors']['prenom'])?'<div class="error">'.$_SESSION['errors']['prenom'].'</div>':''?>
+                    </div>
+                    <div class="my-1 d-flex flex-column">
+                        <label for="date_de_naissance">Date de naissance : </label>
+                        <input type="date" name="date_de_naissance" id="date_de_naissance" value="<?php echo isset($_SESSION['form']['date_de_naissance'])?$_SESSION['form']['date_de_naissance']:''?>">
+                        <?php echo isset($_SESSION['errors']['date_de_naissance'])?'<div class="error">'.$_SESSION['errors']['date_de_naissance'].'</div>':''?>
+                    </div>
+                </div>
+                <div class="my-1 mx-4 d-flex flex-fill flex-column">
+                    <label for="nom">Nom : </label>
+                    <input type="text" name="nom" id="nom" value="<?php echo isset($_SESSION['form']['nom'])?$_SESSION['form']['nom']:''?>">
+                    <?php echo isset($_SESSION['errors']['nom'])?'<div class="error">'.$_SESSION['errors']['nom'].'</div>':''?>
+                </div>
             </div>
             
-            <div class="my-1 d-flex flex-column">
-            <label for="nom">Nom : </label>
-            <input type="text" name="nom" id="nom" value="<?php echo isset($_SESSION['form']['nom'])?$_SESSION['form']['nom']:''?>">
-            <?php echo isset($_SESSION['errors']['nom'])?'<div class="error">'.$_SESSION['errors']['nom'].'</div>':''?>
             
             <div class="my-1 d-flex flex-column">
                 <label for="adresse">Adresse : </label>
                 <input type="text" name="adresse" id="adresse" value="<?php echo isset($_SESSION['form']['adresse'])?$_SESSION['form']['adresse']:''?>">
                 <?php echo isset($_SESSION['errors']['adresse'])?'<div class="error">'.$_SESSION['errors']['adresse'].'</div>':''?>
-            </div>
-            
-            <div class="my-1 d-flex flex-column">
-                <label for="date_de_naissance">Date de naissance : </label>
-                <input type="date" name="date_de_naissance" id="date_de_naissance" value="<?php echo isset($_SESSION['form']['date_de_naissance'])?$_SESSION['form']['date_de_naissance']:''?>">
-                <?php echo isset($_SESSION['errors']['date_de_naissance'])?'<div class="error">'.$_SESSION['errors']['date_de_naissance'].'</div>':''?>
             </div>
             
             <div class="my-1 d-flex flex-column">
