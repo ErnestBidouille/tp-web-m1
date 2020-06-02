@@ -38,23 +38,23 @@
                     </div>
                     <div class="mt-3"> </div>
                     <div class="mt-1">
-                        <b>Date de naissance</b>: $dob
+                        <b>Date de naissance</b> : $dob
                     </div>
                     <div class="mt-1">
-                        <b>Adresse</b>: $adresse
+                        <b>Adresse</b> : $adresse
                     </div>
                     <div class="mt-1">
-                        <b>Parcours initial</b>: <span class="badge badge-danger">$parcours</span>
+                        <b>Parcours initial</b> : <span class="badge badge-danger">$parcours</span>
                     </div>
                     <div class="mt-1">
-                        <b>Domaine</b>: <span class="badge badge-warning">$domaine</span>
+                        <b>Domaine</b> : <span class="badge badge-warning">$domaine</span>
                     </div>
                     <div class="mt-1">
-                        <b>Nom de l'entreprise</b>: $entreprise (<a href="$lien_entreprise" target="_blank">site</a>)
+                        <b>Nom de l'entreprise</b> : $entreprise (<a href="$lien_entreprise" target="_blank">site</a>)
                     </div>
                 </div>
             </div>
-html;
+            html;
         } else {
             echo <<< html
             <div>
@@ -72,18 +72,18 @@ html;
                         </div>
                         <div class="mt-3"> </div>
                         <div class="mt-1">
-                            <b>Date de naissance</b>:
+                            <b>Date de naissance</b> :
                         </div>
                         <div class="mt-1">
-                            <b>Adresse</b>:
+                            <b>Adresse</b> :
                         </div>
                         <div class="mt-1">
-                            <b>Parcours initial</b>:
+                            <b>Parcours initial</b> :
                         </div>
                     </div>
                 </div>
             </div>
-html;
+            html;
         }
     ?>
 
